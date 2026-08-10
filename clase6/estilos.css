@@ -3,3 +3,12 @@ h1, p{
     color: white;
     padding: 10px;
 }
+#principal {
+
+    background-color: blue;
+    color: black;
+    padding: 20px;
+}
+p {
+    background-color: yellow;
+}
