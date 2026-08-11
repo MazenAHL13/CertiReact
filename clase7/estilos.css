@@ -1,0 +1,16 @@
+.parrafo{
+    color: red;
+}
+.titulo{
+    color: blue;
+    background-color: yellow;
+}
+.verde{
+    background-color: green;
+}
+form label{
+    color: blue;
+}
+input[required]{
+    background-color: pink;
+}
