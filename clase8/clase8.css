@@ -1,0 +1,9 @@
+.mensaje{
+    background-color: #ff123f;
+    color: rgb(21, 188, 38);
+    padding: 10px;
+    border-radius: 5px;
+    height: 100px;
+    font-size: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+}
