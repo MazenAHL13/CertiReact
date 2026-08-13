@@ -7,3 +7,13 @@
     font-size: 40px;
     font-family: Arial, Helvetica, sans-serif;
 }
+.mensaje:hover{
+    background-color: rgb(21, 188, 38);
+    color: #ff123f;
+    font-size: 50px;
+}
+input:focus{
+    background-color: rgb(21, 188, 38);
+    color: #ff123f;
+    font-size: 50px;
+}
