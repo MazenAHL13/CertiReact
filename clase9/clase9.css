@@ -52,3 +52,22 @@
     position: relative;
 
 }
+.tarjeta {
+    width: 12rem;
+    border: 2px solid #145DA0;
+    padding: 1rem;
+    left: 5rem;
+    position: relative;
+    background-color: #4e99df;
+    top: 5rem;
+
+}
+.etiqueta {
+    width: 12rem;
+    padding: 1rem;
+    left: 5rem;
+    background-color: #d69862;
+    top: 0.5rem;
+    left: 0.5rem;
+    position: absolute;
+}
