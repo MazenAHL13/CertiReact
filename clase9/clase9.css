@@ -1,0 +1,30 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    background: #1f2b33;
+    font-family: Arial, sans-serif;
+}
+
+.memoria {
+    border-collapse: separate;
+    border-spacing: 0.4rem;
+    background: transparent;
+}
+
+.memoria td {
+    border: 2px solid #145DA0;
+    width: 3.5rem;
+    height: 3.5rem;
+    font-size: 2rem;
+    text-align: center;
+    vertical-align: middle;
+    color: transparent;
+    background: transparent;
+    box-sizing: border-box;
+}
+
+.memoria td:hover {
+    color: gray;
+}
