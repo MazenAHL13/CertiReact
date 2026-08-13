@@ -36,3 +36,19 @@
     background: #708292;
     padding-left: 5rem;
 }
+.normal {
+    width: 12rem;
+    padding: .5rem;
+    background-color: gray;
+    border: 1px solid black;
+    position: static;
+
+}
+.referencia{
+    width: 12rem;
+    border: 2px solid #145DA0;
+    padding: 1rem;
+    left: 5rem;
+    position: relative;
+
+}
