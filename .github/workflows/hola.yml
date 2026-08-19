@@ -10,3 +10,12 @@ jobs:
               run: echo "Hola mundo"
             - name: Descargar Codigo
               uses: actions/checkout@v4
+            - name: which folder
+              uses: pwd
+            - name: listar archivos 
+              uses: ls -la
+            - name: instalar node
+              uses: actions/setup-node@v4
+            - name: verificar node
+              uses: node --version
+              
