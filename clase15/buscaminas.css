@@ -1,0 +1,26 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: #f4f4f4;
+}
+
+.tablero {
+  display: grid;
+  grid-template-columns: repeat(3, 80px);
+  gap: 8px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.casilla {
+  width: 80px;
+  height: 80px;
+  font-size: 36px;
+  cursor: pointer;
+  background: white;
+  border: 2px solid #333;
+}
+
+.casilla:hover {
+  background: #e8e8e8;
+}
