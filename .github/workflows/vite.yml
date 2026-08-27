@@ -1,0 +1,22 @@
+name: Vite Build
+on:
+    push:
+        branches:
+            - main
+    workflow_dispatch:
+jobs:
+    run_vite:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Download Code
+              uses: actions/checkout@v4
+            - name: Install Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "24"
+            - name: Install Dependencies
+              working-directory: clase_08_27/tic-tac-toe
+              run: npm install
+            - name: Run Vite Build
+              working-directory: clase_08_27/tic-tac-toe
+              run: npm run build
