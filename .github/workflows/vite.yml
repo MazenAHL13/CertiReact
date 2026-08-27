@@ -20,3 +20,8 @@ jobs:
             - name: Run Vite Build
               working-directory: clase_08_27/tic-tac-toe
               run: npm run build
+            - name: Guardar Zip
+              uses: actions/upload-artifact@v4
+              with: 
+                  name: aplicacion-web
+                  path: clase_08_27/tic-tac-toe/dist
