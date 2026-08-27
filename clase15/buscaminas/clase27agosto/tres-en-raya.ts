@@ -1,18 +1,28 @@
-let turno = "X";
-let juegoTerminado = false;
+let jugadorActual = "❌";
 
 function TresEnRaya(casilla: HTMLTableCellElement) {
-  if (juegoTerminado || casilla.textContent !== "") {
+  if (casilla.textContent !== "") {
     return;
   }
 
-  casilla.textContent = turno;
+  casilla.textContent = jugadorActual;
 
-  turno = turno === "X" ? "O" : "X";
+  cambiarJugador();
+  mostrarTurno();
+}
 
+function cambiarJugador() {
+  if (jugadorActual === "❌") {
+    jugadorActual = "⭕";
+  } else {
+    jugadorActual = "❌";
+  }
+}
+
+function mostrarTurno() {
   const mensaje = document.getElementById("mensaje");
 
   if (mensaje !== null) {
-    mensaje.textContent = "Turno de " + turno;
+    mensaje.textContent = "Turno de " + jugadorActual;
   }
 }
