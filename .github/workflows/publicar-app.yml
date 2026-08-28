@@ -1,6 +1,9 @@
 name: Publicar App
 
-
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 on:
   push:
@@ -8,11 +11,6 @@ on:
       - main
   workflow_dispatch:
 
-
-permissions:
-  id-token: write
-
-  
 jobs:
   publicar:
     runs-on: ubuntu-latest
