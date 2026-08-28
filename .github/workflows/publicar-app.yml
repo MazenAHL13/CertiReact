@@ -35,12 +35,13 @@ jobs:
         run: |
           test -d dist
           test -f dist/index.html
-
-      - name: Guardar artefacto
-        uses: actions/upload-artifact@v4
-        with:
-          name: app-tres-en-raya
-          path: clase_08_27/tic-tac-toe/dist
       - name: Configurar Github Pages
         uses: actions/configure-pages@v5
-      
+      - name: Subir dist 
+        uses: actions/upload-pages-artifact@v4
+        with:
+          name: aplicacion-web
+          path: clase_08_27/tic-tac-toe/dist
+
+      - name: publicar
+        uses: actions/deploy-pages@v4
