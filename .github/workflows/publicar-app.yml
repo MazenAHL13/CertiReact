@@ -45,7 +45,6 @@ jobs:
       - name: Subir dist 
         uses: actions/upload-pages-artifact@v4
         with:
-          name: aplicacion-web
           path: clase_08_27/tic-tac-toe/dist
 
       - name: publicar
