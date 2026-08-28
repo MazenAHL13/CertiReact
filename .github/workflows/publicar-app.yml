@@ -42,5 +42,5 @@ jobs:
           name: app-tres-en-raya
           path: clase_08_27/tic-tac-toe/dist
       - name: Configurar Github Pages
-        uses: actions/configure - pages@ev5
+        uses: actions/configure-pages@v5
       
