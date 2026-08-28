@@ -1,0 +1,46 @@
+name: Publicar App
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: clase_08_27/tic-tac-toe
+
+    steps:
+      - name: Descargar codigo
+        uses: actions/checkout@v4
+
+      - name: Instalar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: clase_08_27/tic-tac-toe/package-lock.json
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Construir app
+        run: npm run build
+
+      - name: Validar artefacto
+        run: |
+          test -d dist
+          test -f dist/index.html
+
+      - name: Guardar artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-tres-en-raya
+          path: clase_08_27/tic-tac-toe/dist
+      - name: Configurar Github Pages
+        uses: actions/ configure - pages@ev5
+      
