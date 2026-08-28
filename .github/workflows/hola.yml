@@ -1,21 +1,23 @@
-name: Hola mundo 
-on:
-    push:
-    workflow_dispatch:
-jobs:
-    hola:
-        runs-on: ubuntu-latest
-        steps:
-            - name: saludar
-              run: echo "Hola mundo"
-            - name: Descargar Codigo
-              uses: actions/checkout@v4
-            - name: which folder
-              uses: pwd
-            - name: listar archivos 
-              uses: ls -la
-            - name: instalar node
-              uses: actions/setup-node@v4
-            - name: verificar node
-              uses: node --version
+name: Hola mundo
 
+on:
+  workflow_dispatch:
+
+jobs:
+  hola:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Saludar
+        run: echo "Hola mundo"
+      - name: Descargar codigo
+        uses: actions/checkout@v4
+      - name: Mostrar carpeta
+        run: pwd
+      - name: Listar archivos
+        run: ls -la
+      - name: Instalar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verificar Node
+        run: node --version
