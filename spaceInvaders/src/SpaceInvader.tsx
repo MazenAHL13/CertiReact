@@ -15,6 +15,12 @@ export default function SpaceInvaders() {
     null,
   );
 
+  // Cuando gameOver es true, mostramos el mensaje de perder.
+  const [gameOver, setGameOver] = useState<boolean>(false);
+
+  // Puntaje: sube cada vez que la bala toca al bloque.
+  const [score, setScore] = useState<number>(0);
+
   // Guardamos las teclas presionadas para mover al jugador de forma continua.
   const pressedKeys = useRef(new Set<string>());
 
@@ -25,9 +31,26 @@ export default function SpaceInvaders() {
   const gameWidth = 20;
   const gameHeight = 15;
 
+  // Reinicia el juego a los valores del inicio.
+  function resetGame() {
+    setLeft(0);
+    setBottom(0);
+    setBlockTop(0);
+    setBlockLeft(10);
+    setWeapon(null);
+    setGameOver(false);
+    setScore(0);
+    pressedKeys.current.clear();
+    playerPosition.current = { left: 0, bottom: 0 };
+  }
+
   useEffect(() => {
     // Cuando se presiona una flecha, la guardamos en pressedKeys.
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (gameOver) {
+        return;
+      }
+
       if (e.key.startsWith("Arrow")) {
         e.preventDefault();
         pressedKeys.current.add(e.key);
@@ -61,6 +84,10 @@ export default function SpaceInvaders() {
 
     // Este intervalo revisa las teclas presionadas y mueve al jugador.
     const movement = setInterval(() => {
+      if (gameOver) {
+        return;
+      }
+
       if (pressedKeys.current.has("ArrowLeft")) {
         setLeft((prev) => {
           const nextLeft = Math.max(0, prev - 1);
@@ -97,29 +124,41 @@ export default function SpaceInvaders() {
       window.removeEventListener("keyup", handleKeyUp);
       clearInterval(movement);
     };
-  }, []);
+  }, [gameOver]);
 
   useEffect(() => {
     // Este intervalo hace que el bloque baje poco a poco.
     const fallingBlock = setInterval(() => {
+      if (gameOver) {
+        return;
+      }
+
       setBlockTop((prev) => {
-        // Si el bloque llega abajo, vuelve a empezar arriba en otra columna.
-        if (prev >= gameHeight) {
-          setBlockLeft(Math.floor(Math.random() * gameWidth));
-          return 0;
+        const nextTop = prev + 1;
+        const playerTop = gameHeight - playerPosition.current.bottom;
+
+        // Pierdes si el bloque esta en la misma columna y toca al jugador.
+        const touchesShip =
+          blockLeft === playerPosition.current.left && nextTop >= playerTop;
+
+        // Pierdes si el bloque llega al suelo o toca al jugador.
+        if (nextTop >= gameHeight || touchesShip) {
+          setGameOver(true);
+          setWeapon(null);
+          return prev;
         }
 
-        return prev + 1;
+        return nextTop;
       });
     }, 400);
 
     // Limpieza del intervalo del bloque.
     return () => clearInterval(fallingBlock);
-  }, []);
+  }, [blockLeft, gameOver]);
 
   useEffect(() => {
-    // Si no hay bala, no hacemos nada.
-    if (!weapon) {
+    // Si no hay bala o el juego termino, no hacemos nada.
+    if (!weapon || gameOver) {
       return;
     }
 
@@ -141,6 +180,7 @@ export default function SpaceInvaders() {
 
         // Si la bala toca el bloque, el bloque vuelve arriba y la bala desaparece.
         if (hitsBlock) {
+          setScore((prevScore) => prevScore + 1);
           setBlockTop(0);
           setBlockLeft(Math.floor(Math.random() * gameWidth));
           return null;
@@ -158,11 +198,12 @@ export default function SpaceInvaders() {
 
     // Limpieza del intervalo de la bala.
     return () => clearInterval(movingWeapon);
-  }, [weapon, blockTop, blockLeft]);
+  }, [weapon, blockTop, blockLeft, gameOver]);
 
   return (
     <>
       <h1>Space Invaders</h1>
+      <p className="score">Score: {score}</p>
       <div className="game">
         {/* Bloque que cae. Usa top para empezar desde arriba. */}
         <div
@@ -185,6 +226,14 @@ export default function SpaceInvaders() {
               bottom: `${weapon.bottom}rem`,
             }}
           ></div>
+        )}
+
+        {/* Mensaje que aparece cuando el bloque toca el suelo o al jugador. */}
+        {gameOver && (
+          <div className="game-over">
+            <h2>Game Over</h2>
+            <button onClick={resetGame}>Reset</button>
+          </div>
         )}
       </div>
     </>
