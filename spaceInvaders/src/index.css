@@ -75,7 +75,7 @@ h2 {
 
 h1 {
   font-size: 56px;
-  letter-spacing: -1.68px;
+  letter-spacing: 0;
   margin: 32px 0;
   @media (max-width: 1024px) {
     font-size: 36px;
@@ -108,4 +108,40 @@ code {
   line-height: 135%;
   padding: 4px 8px;
   background: var(--code-bg);
+}
+
+.game {
+  /* Tablero del juego. position relative permite mover piezas adentro. */
+  width: 22rem;
+  max-width: calc(100vw - 2rem);
+  height: 17rem;
+  margin: 0 auto;
+  border: 2px solid black;
+  position: relative;
+}
+
+.shoot {
+  /* Jugador: cuadrado verde que se mueve con las flechas. */
+  width: 2rem;
+  height: 2rem;
+  background: green;
+  position: absolute;
+}
+
+.weapon {
+  /* Bala: rectangulo rojo que sube cuando presionas espacio. */
+  width: 0.4rem;
+  height: 1rem;
+  background: red;
+  position: absolute;
+  margin-left: 0.8rem;
+}
+
+.block {
+  /* Bloque enemigo: empieza arriba con top: 0 y va cayendo. */
+  width: 2rem;
+  height: 2rem;
+  background: purple;
+  position: absolute;
+  top: 0;
 }
